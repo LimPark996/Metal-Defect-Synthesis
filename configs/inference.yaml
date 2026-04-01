@@ -1,0 +1,26 @@
+# 추론/생성 설정
+
+sampling:
+  num_steps: 32
+  cfg_weight: 2.0
+  temperature: 1.0
+  randomize_halton: true
+
+inpainting:
+  num_steps: 8
+  temperature: 1.0
+
+mask_presets:
+  center_small: "6x6 중앙"
+  center_large: "8x8 중앙"
+  top_left: "6x6 좌상단"
+  bottom_right: "6x6 우하단"
+
+paths:
+  vqgan_ckpt: "checkpoints/vqgan/vqgan_finetune_up_epoch50.pt"
+  maskgit_ckpt: "checkpoints/maskgit/maskgit_epoch100.pt"
+
+gradio:
+  share: true
+  debug: true
+  title: "Metal Defect Synthesizer"

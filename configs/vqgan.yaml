@@ -1,0 +1,38 @@
+# VQGAN Fine-tuning 설정
+
+model:
+  name: "VQ-16"
+  codebook_size: 16384
+  codebook_dim: 8
+  downsample_factor: 16
+  image_size: 256
+
+data:
+  dataset_path: "data/NEU-DET"
+  split: "train"
+  image_size: 256
+  num_workers: 2
+  batch_size: 8
+
+training:
+  epochs: 50
+  save_every: 5
+  learning_rate:
+    encoder: 1.0e-7
+    decoder: 4.5e-6
+    quantizer: 4.5e-6
+    discriminator: 4.5e-6
+  optimizer:
+    betas: [0.5, 0.9]
+  loss_weights:
+    codebook: 1.0
+    pixel: 1.0
+    perceptual: 1.0
+    discriminator: 0.8
+  disc_factor: 1.0
+  disc_start_step: 1000
+
+paths:
+  pretrained_ckpt: "checkpoints/vqgan_imagenet_f16_16384.ckpt"
+  pretrained_config: "checkpoints/model.yaml"
+  output_dir: "checkpoints/vqgan"

@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "metal-defect-synthesis"
+version = "0.1.0"
+description = "AI 기반 금속 표면 결함 이미지 합성"
+requires-python = ">=3.8"
+
+[tool.setuptools.packages.find]
+where = ["src"]

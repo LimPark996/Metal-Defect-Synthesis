@@ -1,0 +1,43 @@
+# MaskGIT 학습 설정
+
+model:
+  size: "small"
+  vocab_size: 16384
+  seq_len: 256
+  hidden_dim: 512
+  num_layers: 12
+  num_heads: 8
+  mlp_ratio: 4.0
+  dropout: 0.1
+  num_classes: 6
+
+class_names:
+  - crazing
+  - inclusion
+  - patches
+  - pitted_surface
+  - rolled-in_scale
+  - scratches
+
+data:
+  token_cache_path: "data/token_cache/defect_tokens.pt"
+  merged_dataset_path: "data/merged_dataset_200x200"
+  batch_size: 32
+  num_workers: 2
+  augmentation_factor: 8
+
+training:
+  epochs: 100
+  learning_rate: 1.0e-4
+  weight_decay: 0.03
+  warmup_epochs: 5
+  grad_clip: 1.0
+  label_drop_prob: 0.1
+  mask_schedule: "arccos"
+  save_every: 10
+  sample_every: 10
+
+paths:
+  vqgan_ckpt: "checkpoints/vqgan/vqgan_finetune_up_epoch50.pt"
+  output_dir: "checkpoints/maskgit"
+  sample_dir: "samples"
