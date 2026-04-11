@@ -1,7 +1,10 @@
 """
-Halton Sampler - 이미지 생성기
-- Halton sequence로 토큰 순서 결정 (공간적 균일성)
-- CFG (Classifier-Free Guidance) 지원
+sampler.py — Halton-MaskGIT 이미지 샘플러
+
+이 모듈이 하는 일:
+  1. Halton 순서대로 마스크 토큰을 점진적으로 채워 이미지 생성
+  2. Classifier-Free Guidance(CFG)로 클래스 조건부 생성 강화
+  3. VQGAN 디코더로 최종 이미지 복원
 """
 
 import math
@@ -34,6 +37,7 @@ class HaltonSampler:
         codebook_size: int = 16384,
         mask_token_id: int = 16384,
     ):
+        """샘플링 하이퍼파라미터를 저장하고 Halton 마스크를 미리 생성."""
         self.num_steps = num_steps
         self.cfg_weight = cfg_weight
         self.temperature = temperature

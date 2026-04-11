@@ -111,6 +111,7 @@ class MaskGITTrainer:
         save_every: int = 10,
         save_dir: str = "checkpoints",
     ):
+        """모델, 옵티마이저, 스케줄러, 손실 함수 및 학습 하이퍼파라미터 초기화."""
         self.model = model
         self.dataloader = dataloader
         self.device = device
@@ -215,6 +216,7 @@ class MaskGITTrainer:
         return total_loss / num_batches, total_acc / num_batches
 
     def _save_checkpoint(self, epoch: int):
+        """모델/옵티마이저/스케줄러 상태와 학습 지표를 체크포인트로 저장."""
         ckpt_path = os.path.join(self.save_dir, f"maskgit_epoch{epoch:03d}.pt")
         torch.save({
             'epoch': epoch,

@@ -92,6 +92,7 @@ class VQGANTrainer:
         disc_factor: float = 1.0,
         disc_start: int = 1000,
     ):
+        """모델, 판별자, 손실, 옵티마이저 및 학습 하이퍼파라미터 초기화."""
         self.model = model
         self.discriminator = discriminator
         self.perceptual_loss = perceptual_loss
@@ -228,6 +229,7 @@ class VQGANTrainer:
         return epoch_logs
 
     def _save_checkpoint(self, epoch: int):
+        """현재 에폭의 모델/판별자/옵티마이저 상태를 체크포인트 파일로 저장."""
         save_path = os.path.join(self.save_dir, f"vqgan_finetune_up_epoch{epoch}.pt")
         torch.save({
             'epoch': epoch,

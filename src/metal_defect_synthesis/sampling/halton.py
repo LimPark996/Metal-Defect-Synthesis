@@ -1,7 +1,9 @@
 """
-Halton Sequence 생성
-- 저불일치 시퀀스(Low-discrepancy sequence)를 이용한 균일 샘플링
-- 2D Halton mask: 이미지 토큰 생성 순서 결정에 사용
+halton.py — Halton 시퀀스 및 2D 마스크 생성
+
+이 모듈이 하는 일:
+  1. 1D 저불일치(low-discrepancy) Halton 시퀀스 계산
+  2. 16x16 토큰 격자를 공간적으로 균일하게 덮는 2D 좌표 순서 생성
 """
 
 from typing import List

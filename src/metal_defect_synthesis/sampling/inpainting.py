@@ -1,6 +1,10 @@
 """
-인페인팅 (결함 합성)
-- 원본 이미지의 일부 영역을 특정 결함으로 채움
+inpainting.py — 결함 합성용 인페인팅
+
+이 모듈이 하는 일:
+  1. 원본 이미지를 토큰화한 뒤 지정 영역만 [MASK]로 교체
+  2. MaskGIT으로 cosine 스케줄 기반 iterative decoding 수행
+  3. 결과 토큰을 VQGAN으로 디코딩하여 합성 이미지 반환
 """
 
 from typing import List, Union
@@ -12,7 +16,7 @@ from ..models.vqgan_wrapper import encode_to_tokens, decode_from_tokens
 
 
 def cosine_schedule(t: torch.Tensor) -> torch.Tensor:
-    """Cosine masking schedule"""
+    """Cosine 마스킹 스케줄: t in [0,1] → 유지 비율."""
     return torch.cos(t * torch.pi / 2)
 
 
